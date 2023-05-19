@@ -1,10 +1,14 @@
 import fastify from 'fastify'
+import { memoriesRoutes } from './routes/memories'
+import cors from '@fastify/cors'
 
 const app = fastify()
 
-app.get('/hello', () => {
-  return 'hello words'
+app.register(cors, {
+  origin: true,
 })
+
+app.register(memoriesRoutes)
 
 app
   .listen({
